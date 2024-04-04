@@ -1,0 +1,135 @@
+﻿@page "/employee/{EmployeeId:int}"
+
+@using TCSASystems.Blazor.EmployeeManagement.Models.DTOs
+@using TCSASystems.Blazor.EmployeeManagement.Models
+@using TCSASystems.Blazor.EmployeeManagement.Services
+@using static TCSASystems.Blazor.EmployeeManagement.Components.Warning
+@if (ShowWarning)
+{
+    <Warning OnClickCallback="DismissWarning" Type=@Warning_Type Message="@Warning_Message"/>
+
+}
+else
+{
+    <Card>
+        <div class=" row user-detail-row">
+
+            <div class="form-group">
+                <EditForm Model="@addEmployeeForm" OnValidSubmit="EditEmployee">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="addEmployeeForm.Name" class="form-control" id="floatingInput " placeholder="Name here" />
+                        <label for=" floatingInput">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="addEmployeeForm.Salary" class="form-control" id="floatingInput " placeholder="Salary here" />
+                        <label for=" floatingInput">Salary</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputSelect @bind-Value="addEmployeeForm.Type" class="form-select" id="floatingInput " placeholder="Type here">
+
+                            @foreach (EmployeeType type in Enum.GetValues(typeof(EmployeeType)))
+                            {
+                                <option value="@type">@type.GetDisplayName()</option>
+                            }
+
+                        </InputSelect>
+                        <label for=" floatingInput">Type</label>
+
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputSelect @bind-Value="addEmployeeForm.Position" class="form-select" id="floatingInput " placeholder="Position here">
+
+                            @foreach (Position position in Enum.GetValues(typeof(Position)))
+                            {
+                                <option value="@position"> @position.GetDisplayName()</option>
+                            }
+
+                        </InputSelect>
+                        <label for=" floatingInput">Position</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="addEmployeeForm.ImgUrl" class="form-control" id="floatingInput " placeholder="URL here" />
+                        <label for=" floatingInput">Image Url</label>
+                    </div>
+                    <button class="btn btn-outline-secondary" type="submit">Update</button>
+                    <div @onclick="@ShowDelelteConfirmation" class="btn btn-danger" typeof="button">Delete </div>
+                </EditForm>
+
+            </div>
+        </div>
+    </Card>
+
+}
+
+@if (ShowDeleteModel)
+{
+    <DeleteConfirmationModel>
+        <p>Are you sure you want to delete this employee?</p>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary me-1"@onclick="@DeleteEmployee" type="button">Confirm</button>
+            <button class="btn btn-danger" @onclick="@CancelDelete" type="button">Cancel</button>
+        
+        </div>
+    </DeleteConfirmationModel>
+}
+
+@code {
+    [Parameter] public int EmployeeId{ get; set; }
+
+    [Inject] private IEmployeeService EmployeeService{ get; set; }
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+    private AddEmployeeForm addEmployeeForm = new();
+    private bool ShowDeleteModel = false;
+    private bool ShowWarning = false;
+    private string Warning_Message = "";
+    private WarningType Warning_Type;
+
+    private Employee Employee;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await EmployeeService.GetEmployee(EmployeeId);
+
+        addEmployeeForm.Name = Employee.Name;
+        addEmployeeForm.Type = Employee.Type;
+        addEmployeeForm.Position = Employee.Position;
+        addEmployeeForm.Salary= Employee.Salary;
+        addEmployeeForm.ImgUrl = Employee.ImgUrl;
+
+    }
+    private async Task EditEmployee()
+    {
+        Employee.Name =addEmployeeForm.Name;
+        Employee.Type = addEmployeeForm.Type;
+        Employee.Position = addEmployeeForm.Position;
+        Employee.Salary = addEmployeeForm.Salary;
+        Employee.ImgUrl = addEmployeeForm.ImgUrl;
+
+        var response = await EmployeeService.EditEmployee(Employee);
+       
+        Warning_Type = response.StatusCode == 200 ? WarningType.Success : WarningType.Error;
+        Warning_Message = response.Message;
+       
+        ShowWarning = true;
+    }
+
+    private async Task DeleteEmployee()
+    {
+        var response = await EmployeeService.DeleteEmployee(Employee);
+        Warning_Type = response.StatusCode == 200 ? WarningType.Success : WarningType.Error;
+        Warning_Message = response.Message;
+        ShowDeleteModel = false;
+        ShowWarning = true; 
+
+    }
+    private void ShowDelelteConfirmation() => ShowDeleteModel = true;
+    private void CancelDelete() => ShowDeleteModel = false;
+    private void DismissWarning()
+    {
+        ShowWarning = false;
+        NavigationManager.NavigateTo("/");
+    }
+}

@@ -1,0 +1,11 @@
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.csproj.AssemblyReference.cache
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\Interop.SystemMonitor.dll
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\Interop.Microsoft.Office.Interop.Access.Dao.dll
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.csproj.ResolveComReference.cache
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.AssemblyInfoInputs.cache
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.AssemblyInfo.cs
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.csproj.CoreCompileInputs.cache
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.RazorAssemblyInfo.cache
+C:\Users\ksafa\source\repos\TCSASystems.Blazor.EmployeeManagement\TCSASystems.Blazor.EmployeeManagement\obj\Debug\net7.0\TCSASystems.Blazor.EmployeeManagement.RazorAssemblyInfo.cs
